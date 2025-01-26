@@ -1,7 +1,21 @@
-django
-djangorestframework
-django-cors-headers
-django-rest-auth
-psycopg2-binary
-gunicorn
-dj-database-url
+# Django & Database Packages
+Django>=4.0,<5.0
+gunicorn  # For running Django on Render
+dj-database-url  # For handling database connection strings
+psycopg2-binary  # PostgreSQL adapter for Django
+
+# Django REST Framework & Authentication
+djangorestframework  # Django REST API support
+djangorestframework.authtoken  # Token-based authentication
+dj-rest-auth  # User authentication & registration
+django-allauth  # Social login & user auth
+
+# CORS & Security
+django-cors-headers  # Handle CORS for frontend requests
+whitenoise  # Serve static files in production
+
+# Environment Variables
+python-dotenv  # Load environment variables from .env
+
+# Other Utilities
+Pillow  # Image processing (if needed for uploads)
