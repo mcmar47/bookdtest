@@ -74,7 +74,7 @@ TEMPLATES = [
     },
 ]
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-ROOT_URLCONF = 'music_venue_backend.urls'
+ROOT_URLCONF = 'bookdtest.urls'
 
 DEBUG = True
 
