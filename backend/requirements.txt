@@ -1,0 +1,6 @@
+django
+djangorestframework
+django-cors-headers
+django-rest-auth
+psycopg2-binary
+gunicorn

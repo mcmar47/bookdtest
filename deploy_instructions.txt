@@ -1,0 +1,34 @@
+
+### Deployment Instructions
+
+1. **Prepare Your Django Project**
+   - Ensure you have the following in your `requirements.txt` file:
+     ```
+     django
+     djangorestframework
+     django-cors-headers
+     django-rest-auth
+     psycopg2-binary
+     gunicorn
+     ```
+
+2. **Set Up Production Settings**
+   - Update `settings.py`:
+     ```
+     ALLOWED_HOSTS = ['your-app-name.onrender.com']
+     STATIC_URL = '/static/'
+     STATIC_ROOT = BASE_DIR / 'staticfiles'
+     ```
+
+3. **Create a GitHub Repository**
+   - Initialize Git, add your files, and push to GitHub.
+
+4. **Deploy on Render**
+   - Create a new Web Service, connect your GitHub repo, and configure build/start commands.
+   - Add environment variables: `DJANGO_SECRET_KEY`, `DATABASE_URL`, `DISABLE_COLLECTSTATIC=1`.
+
+5. **Post-Deployment Setup**
+   - Run migrations and create a superuser from the Render Shell.
+
+6. **Test Your Deployment**
+   - Visit your app and test functionality.
