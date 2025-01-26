@@ -1,13 +1,18 @@
-# Django & Database Packages
+# Django & Web Server
 Django>=4.0,<5.0
-gunicorn  # For running Django on Render
-dj-database-url  # For handling database connection strings
+gunicorn  # Production WSGI server for Render
+
+# Database Packages
+dj-database-url  # Handle database connection strings
 psycopg2-binary  # PostgreSQL adapter for Django
 
 # Django REST Framework & Authentication
 djangorestframework  # Django REST API support
 dj-rest-auth  # User authentication & registration
-django-allauth  # Social login & user auth
+django-allauth  # Social login & user authentication
+
+# HTTP Requests & API Communication
+requests  
 
 # CORS & Security
 django-cors-headers  # Handle CORS for frontend requests
@@ -16,5 +21,7 @@ whitenoise  # Serve static files in production
 # Environment Variables
 python-dotenv  # Load environment variables from .env
 
+# Image Handling (Optional)
+Pillow  # If you allow image uploads
+
 # Other Utilities
-Pillow  # Image processing (if needed for uploads)
