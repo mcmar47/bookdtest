@@ -6,7 +6,6 @@ psycopg2-binary  # PostgreSQL adapter for Django
 
 # Django REST Framework & Authentication
 djangorestframework  # Django REST API support
-djangorestframework.authtoken  # Token-based authentication
 dj-rest-auth  # User authentication & registration
 django-allauth  # Social login & user auth
 
