@@ -29,7 +29,7 @@ function VenueDetail() {
           height="300"
           frameBorder="0"
           style={{ border: 0 }}
-          src={`https://www.google.com/maps/embed/v1/place?key={googleMapsApiKey}=${encodeURIComponent(venue.address)}`}
+          src={`https://www.google.com/maps/embed/v1/place?key={googleMapsApiKey}&q=${encodeURIComponent(venue.address)}`}
           allowFullScreen
         ></iframe>
       </div>
