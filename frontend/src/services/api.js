@@ -7,6 +7,8 @@ const API_URL =
 	
 console.log("🛠 API URL:", API_URL); 
 
+export { API_URL }; 
+
 export const registerUser = async (userData) => {
   return axios.post(`${API_URL}/auth/registration/`, userData);
 };
