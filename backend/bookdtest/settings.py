@@ -36,7 +36,17 @@ MIDDLEWARE = [
     'allauth.account.middleware.AccountMiddleware', 
 ]
 
-CORS_ORIGIN_ALLOW_ALL = True
+ORS_ALLOWED_ORIGINS = [
+    "https://bookdtest-1.onrender.com",  # ✅ React frontend on Render
+    "https://bookdtest.onrender.com",  # ✅ Backend on Render
+    "http://localhost:3000",  # ✅ Local development
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://bookdtest-1.onrender.com",
+    "https://bookdtest.onrender.com",
+    "http://localhost:3000",
+]
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
