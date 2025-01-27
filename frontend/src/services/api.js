@@ -1,8 +1,11 @@
 import axios from 'axios';
 
-// Change this to match your Django backend URL
-const API_URL = 'http://localhost:8000/api';
-
+const API_URL =
+  window.location.hostname === 'localhost'
+    ? 'http://localhost:8000'  // ✅ Local development
+    : 'https://bookdtest.onrender.com';  // ✅ Deployed on Render
+	
+console.log("🛠 API URL:", API_URL); 
 export const getVenues = async () => {
   return axios.get(`${API_URL}/venues/`);
 };
