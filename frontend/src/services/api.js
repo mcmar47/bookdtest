@@ -85,7 +85,7 @@ export const getEvents = async (venueId) => {
 // Add a new event to the server
 export const addEvent = async (eventData) => {
   try {
-    const response = await axios.post(`${API_URL}/api/events`, eventData);
+    const response = await axios.post(`${API_URL}/api/events/`, eventData);
     return response.data;
   } catch (error) {
     console.error('Error adding event:', error);
