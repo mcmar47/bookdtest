@@ -27,10 +27,10 @@ function VenueDetail() {
     const title = prompt('Enter event title:');
     if (title) {
       const newEvent = { title, start: arg.dateStr, venueId: id };
-      addEvent(newEvent)
-        .then(() => setEvents([...events, newEvent]))
-        .catch(error => console.log(error));
-    }
+     addEvent(newEvent)
+      .then(() => setEvents((prevEvents) => [...(prevEvents || []), newEvent]))  // ✅ Ensure array
+      .catch((error) => console.error("Error adding event:", error));
+  }
   };
 
   if (!venue) return <p>Loading...</p>;
