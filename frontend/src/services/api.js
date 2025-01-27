@@ -83,32 +83,39 @@ export const getEvents = async (venueId) => {
 
 
 // Add a new event to the server
-export const addEvent = async (eventData) => {
-    console.log("API_URL in addEvent:", API_URL); // ✅ Debugging log
-    console.log("Event Data:", eventData); // ✅ Log eventData before sending
+import { API_URL } from '../api';  // ✅ Use global API_URL
 
-     // Validate that date exists
-     if (!eventData.date) {
-       console.error("❌ Missing required 'date' field:", eventData);
-       return Promise.reject({ error: "Date is required." });
-     }
-	
-    return fetch(`${API_URL}/api/events/`, {  // ✅ Ensure trailing slash
+export const addEvent = async (eventData) => {
+  console.log("API_URL in addEvent:", API_URL); // ✅ Debugging log
+  console.log("Event Data Before Fix:", eventData); // ✅ Log eventData before sending
+
+  // Fix: Use `start` as `date` if `date` is missing
+  const fixedEventData = {
+    title: eventData.title || "Untitled Event",
+    date: eventData.date || eventData.start,  // ✅ Use `start` as fallback for `date`
+    time: eventData.time || "00:00:00",  // Default time to midnight if not provided
+    venue: eventData.venueId,  // ✅ Ensure 'venue' field is included
+    description: eventData.description || "",  // Optional field
+  };
+
+  // Validate that date exists
+  if (!fixedEventData.date) {
+    console.error("❌ Still Missing 'date' field after fix:", fixedEventData);
+    return Promise.reject({ error: "Date is required." });
+  }
+
+  console.log("Event Data After Fix:", fixedEventData); // ✅ Debugging log after fix
+
+  return fetch(`${API_URL}/api/events/`, {  // ✅ Ensure trailing slash
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      title: eventData.title,
-      date: eventData.date,  // ✅ Ensure 'date' is included
-      time: eventData.time || null,  // Optional
-      venue: eventData.venueId,  // ✅ Ensure 'venue' field is included
-      description: eventData.description || "",  // Optional field
-    }),
+    body: JSON.stringify(fixedEventData),
   }).then(response => {
     if (!response.ok) {
       return response.json().then(err => { throw err; });
     }
     return response.json();
-  }).catch(error => console.error("Error adding event:", error));
+  }).catch(error => console.error("❌ Error adding event:", error));
 };
