@@ -29,29 +29,34 @@ export const AddEventForm = ({ isOpen, onRequestClose, onSubmit, selectedDate })
   };
 
   return (
-    <Modal isOpen={isOpen} onRequestClose={onRequestClose} className="modal" overlayClassName="overlay">
-      <div className="p-4 bg-white rounded-xl shadow-md">
+    <Modal 
+      isOpen={isOpen} 
+      onRequestClose={onRequestClose} 
+      className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50" 
+      overlayClassName="overlay"
+    >
+      <div className="p-4 bg-white rounded-xl shadow-md w-96">
         <h2 className="text-lg font-bold">Add Event on {selectedDate}</h2>
         <form onSubmit={handleSubmit}>
           <label>
             Title:
-            <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} required className="block p-2 border rounded" />
+            <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} required className="block p-2 border rounded w-full" />
           </label>
           <label>
             Time:
-            <input type="time" value={time} onChange={(e) => setTime(e.target.value)} required className="block p-2 border rounded" />
+            <input type="time" value={time} onChange={(e) => setTime(e.target.value)} required className="block p-2 border rounded w-full" />
           </label>
           <label>
             Duration (minutes):
-            <input type="number" value={duration} onChange={(e) => setDuration(e.target.value)} required className="block p-2 border rounded" />
+            <input type="number" value={duration} onChange={(e) => setDuration(e.target.value)} required className="block p-2 border rounded w-full" />
           </label>
           <label>
             Description:
-            <textarea value={description} onChange={(e) => setDescription(e.target.value)} className="block p-2 border rounded" />
+            <textarea value={description} onChange={(e) => setDescription(e.target.value)} className="block p-2 border rounded w-full" />
           </label>
-          <button type="submit" className="mt-2 bg-blue-600 text-white px-4 py-2 rounded">Add Event</button>
+          <button type="submit" className="mt-2 bg-blue-600 text-white px-4 py-2 rounded w-full">Add Event</button>
         </form>
-        <button onClick={onRequestClose} className="mt-2 bg-red-600 text-white px-4 py-2 rounded">Cancel</button>
+        <button onClick={onRequestClose} className="mt-2 bg-red-600 text-white px-4 py-2 rounded w-full">Cancel</button>
       </div>
     </Modal>
   );
