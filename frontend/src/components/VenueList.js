@@ -17,6 +17,11 @@ function VenueList() {
     navigate(`/venue/${id}`);
   };
 
+  const filteredVenues = venues.filter((venue) =>
+    venue.address.toLowerCase().includes(filters.location.toLowerCase()) &&
+    (filters.size ? venue.capacity >= parseInt(filters.size, 10) : true)
+  );
+
   return (
     <div>
       {/* Header row with page title and Add Venue button */}
@@ -30,7 +35,7 @@ function VenueList() {
         </Link>
       </div>
 
-      {/* Simple filter inputs (not fully implemented) */}
+      {/* Simple filter inputs */}
       <div className="mb-4 space-x-2">
         <input
           type="text"
@@ -40,8 +45,8 @@ function VenueList() {
           className="p-2 border rounded"
         />
         <input
-          type="text"
-          placeholder="Size"
+          type="number"
+          placeholder="Min Capacity"
           value={filters.size}
           onChange={(e) => setFilters({ ...filters, size: e.target.value })}
           className="p-2 border rounded"
@@ -50,7 +55,7 @@ function VenueList() {
 
       {/* Venue listing */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {venues.map((venue) => (
+        {filteredVenues.map((venue) => (
           <div key={venue.id} className="bg-white rounded-xl shadow p-4">
             <h3 className="text-lg font-semibold">{venue.name}</h3>
             <p>{venue.address}</p>
