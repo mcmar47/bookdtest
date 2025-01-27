@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
-const API_URL = 'http://localhost:8000/auth/user/';
+import { API_URL } from '../services/api';
 
 function Profile() {
   const [user, setUser] = useState(null);
