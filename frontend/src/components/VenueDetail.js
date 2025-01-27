@@ -21,8 +21,18 @@ function VenueDetail() {
       <p>{venue.address}</p>
       <p>Capacity: {venue.capacity}</p>
       <p>Price: ${venue.price_per_event}</p>
+      <div className="mt-4">
+        <iframe
+          width="100%"
+          height="300"
+          frameBorder="0"
+          style={{ border: 0 }}
+          src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyAGgR4RnIPvivGbx9_tBiOMsp8Ia2hIYvY&q=${encodeURIComponent(venue.address)}`}
+          allowFullScreen
+        ></iframe>
+      </div>
       <button
-        onClick={() => navigate(`/booking-request/\${venue.id}`)}
+        onClick={() => navigate(`/booking-request/${venue.id}`)}
         className="mt-4 bg-green-600 text-white px-4 py-2 rounded"
       >
         Request Booking
