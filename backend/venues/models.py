@@ -8,3 +8,14 @@ class Venue(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Event(models.Model):
+    title = models.CharField(max_length=255)
+    date = models.DateField()
+    time = models.TimeField(null=True, blank=True)  # Optional event time
+    venue = models.ForeignKey(Venue, on_delete=models.CASCADE, related_name='events')
+    description = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.title} at {self.venue.name} on {self.date}"

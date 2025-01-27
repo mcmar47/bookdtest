@@ -1,8 +1,11 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import VenueViewSet
+from .views import VenueViewSet, EventViewSet
 
 router = DefaultRouter()
-router.register(r'', VenueViewSet)
+router.register(r'venues', VenueViewSet)
+router.register(r'events', EventViewSet)
 
-urlpatterns = router.urls
+urlpatterns = [
+    path('', include(router.urls)),
+]

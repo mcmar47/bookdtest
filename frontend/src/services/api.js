@@ -70,3 +70,24 @@ export const getUserProfile = async (token) => {
     throw error;
   }
 };
+
+export const getEvents = async () => {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/events`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching events:', error);
+    throw error;
+  }
+};
+
+// Add a new event to the server
+export const addEvent = async (eventData) => {
+  try {
+    const response = await axios.post(`${API_BASE_URL}/events`, eventData);
+    return response.data;
+  } catch (error) {
+    console.error('Error adding event:', error);
+    throw error;
+  }
+};

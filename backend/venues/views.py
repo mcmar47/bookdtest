@@ -1,9 +1,11 @@
 from rest_framework import viewsets
-from rest_framework.permissions import AllowAny
-from .models import Venue
-from .serializers import VenueSerializer
+from .models import Venue, Event
+from .serializers import VenueSerializer, EventSerializer
 
 class VenueViewSet(viewsets.ModelViewSet):
     queryset = Venue.objects.all()
     serializer_class = VenueSerializer
-    permission_classes = [AllowAny]  # ✅ Temporarily allow all users
+
+class EventViewSet(viewsets.ModelViewSet):
+    queryset = Event.objects.all()
+    serializer_class = EventSerializer
