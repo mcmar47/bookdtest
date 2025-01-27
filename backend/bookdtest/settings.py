@@ -36,7 +36,7 @@ MIDDLEWARE = [
     'allauth.account.middleware.AccountMiddleware', 
 ]
 
-ORS_ALLOWED_ORIGINS = [
+CORS_ALLOWED_ORIGINS = [
     "https://bookdtest-1.onrender.com",  # ✅ React frontend on Render
     "https://bookdtest.onrender.com",  # ✅ Backend on Render
     "http://localhost:3000",  # ✅ Local development
@@ -92,3 +92,14 @@ DEBUG = True
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_AUTHENTICATION_METHOD = 'username'
 ACCOUNT_EMAIL_REQUIRED = False
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',  # ✅ Allow unauthenticated API access
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ],
+}
+
