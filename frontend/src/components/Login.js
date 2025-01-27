@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { API_URL } from '../services/api';
 
-const API_URL = 'http://localhost:8000/auth/login/';
 
 function Login() {
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(API_URL, formData);
+      const response = await axios.post({API_URL}, formData);
       localStorage.setItem('authToken', response.data.key);
       alert('Login successful!');
       navigate('/profile');

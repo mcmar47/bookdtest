@@ -14,7 +14,7 @@ function Profile() {
           return;
         }
 
-        const response = await axios.get(API_URL, {
+        const response = await axios.get({API_URL}, {
           headers: { Authorization: `Token ${token}` }  // ✅ Include Token in Headers
         });
 

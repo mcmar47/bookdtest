@@ -6,6 +6,19 @@ const API_URL =
     : 'https://bookdtest.onrender.com';  // ✅ Deployed on Render
 	
 console.log("🛠 API URL:", API_URL); 
+
+export const registerUser = async (userData) => {
+  return axios.post(`${API_URL}/auth/registration/`, userData);
+};
+
+export const loginUser = async (credentials) => {
+  return axios.post(`${API_URL}/auth/login/`, credentials);
+};
+
+export const getVenues = async () => {
+  return axios.get(`${API_URL}/api/venues/`);
+};
+
 export const getVenues = async () => {
   return axios.get(`${API_URL}/venues/`);
 };

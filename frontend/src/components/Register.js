@@ -15,7 +15,7 @@ function Register() {
     console.log("🔍 Sending Registration Data:", JSON.stringify(formData, null, 2));
 
     try {
-      const response = await axios.post(API_URL, formData);
+      const response = await axios.post({API_URL}, formData);
       console.log("✅ Registration Success:", response.data);
       alert('Registration successful! Please log in.');
       navigate('/login');
