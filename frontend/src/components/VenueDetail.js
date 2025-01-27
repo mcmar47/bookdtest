@@ -6,6 +6,8 @@ function VenueDetail() {
   const { id } = useParams();
   const [venue, setVenue] = useState(null);
   const navigate = useNavigate();
+  const googleMapsApiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
+  
 
   useEffect(() => {
     getVenueDetail(id)
@@ -27,7 +29,7 @@ function VenueDetail() {
           height="300"
           frameBorder="0"
           style={{ border: 0 }}
-          src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyAGgR4RnIPvivGbx9_tBiOMsp8Ia2hIYvY&q=${encodeURIComponent(venue.address)}`}
+          src={`https://www.google.com/maps/embed/v1/place?key={googleMapsApiKey}=${encodeURIComponent(venue.address)}`}
           allowFullScreen
         ></iframe>
       </div>
