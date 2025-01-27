@@ -84,6 +84,8 @@ export const getEvents = async (venueId) => {
 
 // Add a new event to the server
 export const addEvent = async (eventData) => {
+    console.log("API_URL in addEvent:", API_URL); // ✅ Debugging log
+	
     return fetch(`${API_URL}/api/events/`, {  // ✅ Ensure trailing slash
     method: "POST",
     headers: {
