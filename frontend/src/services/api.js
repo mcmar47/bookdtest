@@ -84,7 +84,7 @@ export const getEvents = async (venueId) => {
 
 // Add a new event to the server
 export const addEvent = async (eventData) => {
-  return fetch("https://${API_URL}/api/events/", {  // ✅ Ensure trailing slash
+    return fetch(`${API_URL}/api/events/`, {  // ✅ Ensure trailing slash
     method: "POST",
     headers: {
       "Content-Type": "application/json",
