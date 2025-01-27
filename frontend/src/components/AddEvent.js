@@ -32,10 +32,11 @@ export const AddEventForm = ({ isOpen, onRequestClose, onSubmit, selectedDate })
     <Modal 
       isOpen={isOpen} 
       onRequestClose={onRequestClose} 
-      className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50" 
-      overlayClassName="overlay"
+      className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50" 
+      overlayClassName="fixed inset-0 bg-black bg-opacity-50" 
+      shouldCloseOnOverlayClick={false} 
     >
-      <div className="p-4 bg-white rounded-xl shadow-md w-96">
+      <div className="p-4 bg-white rounded-xl shadow-md w-96 z-50">
         <h2 className="text-lg font-bold">Add Event on {selectedDate}</h2>
         <form onSubmit={handleSubmit}>
           <label>
