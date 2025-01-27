@@ -72,7 +72,7 @@ export const getUserProfile = async (token) => {
 };
 
 export const getEvents = async (venueId) => {
-  return fetch(`${API_URL}/api/events?venueId=${venueId}`)
+  return fetch(`${API_URL}/api/events/?venueId=${venueId}`)
     .then(response => {
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
