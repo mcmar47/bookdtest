@@ -22,6 +22,8 @@ function VenueDetail() {
       .then(response => setEvents(response.data))
       .catch(error => console.log(error));
   }, [id]);
+  const [events, setEvents] = useState([]);  // ✅ Ensure events starts as an empty array
+  
 
   const handleDateClick = (arg) => {
     const title = prompt('Enter event title:');
