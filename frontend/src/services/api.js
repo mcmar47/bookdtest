@@ -72,7 +72,7 @@ export const getUserProfile = async (token) => {
 };
 
 export const getEvents = async (venueId) => {
-  return fetch(`${API_URL}/events?venueId=${venueId}`)
+  return fetch(`${API_URL}/api/events?venueId=${venueId}`)
     .then(response => {
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
@@ -85,7 +85,7 @@ export const getEvents = async (venueId) => {
 // Add a new event to the server
 export const addEvent = async (eventData) => {
   try {
-    const response = await axios.post(`${API_URL}/events`, eventData);
+    const response = await axios.post(`${API_URL}/api/events`, eventData);
     return response.data;
   } catch (error) {
     console.error('Error adding event:', error);
