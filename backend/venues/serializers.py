@@ -7,8 +7,6 @@ class VenueSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class EventSerializer(serializers.ModelSerializer):
-    venue_name = serializers.ReadOnlyField(source='venue.name')
-
     class Meta:
         model = Event
-        fields = ['id', 'title', 'date', 'time', 'venue', 'venue_name', 'description']
+        fields = '__all__'  # ✅ Ensures all fields are required unless set as optional
