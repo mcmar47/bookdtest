@@ -4,7 +4,7 @@ import { getVenueDetail, getEvents, addEvent } from '../services/api';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
-import { addEvent, getEvents } from '../services/api';
+
 
 function VenueDetail() {
   const { id } = useParams();
