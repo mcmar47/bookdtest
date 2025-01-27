@@ -10,6 +10,9 @@ function VenueDetail() {
   const { id } = useParams();
   const [venue, setVenue] = useState(null);
   const [events, setEvents] = useState([]);
+  const [modalOpen, setModalOpen] = useState(false);  
+  const [selectedDate, setSelectedDate] = useState(null);
+  
   const navigate = useNavigate();
   const googleMapsApiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
