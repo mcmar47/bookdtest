@@ -25,6 +25,11 @@ function VenueDetail() {
       })
       .catch(error => console.log("Error fetching events:", error));
   }, [id]);
+  
+  const handleDateClick = (arg) => {
+    setSelectedDate(arg.dateStr);
+    setModalOpen(true);
+  };
 
   // ✅ Function to handle event submission from the form
   const handleAddEvent = (newEvent) => {
@@ -56,16 +61,21 @@ function VenueDetail() {
 
       <div className="mt-4">
         <h3 className="text-lg font-semibold">Event Calendar</h3>
-        {/* ✅ AddEventForm placed here */}
-        <AddEventForm onSubmit={handleAddEvent} /> 
+	      {/* ✅ Show AddEventForm as a modal */}
+	         <AddEventForm 
+	           isOpen={modalOpen} 
+	           onRequestClose={() => setModalOpen(false)} 
+	           onSubmit={handleAddEvent}
+	           selectedDate={selectedDate}
+	         />
 
-        <FullCalendar
-          plugins={[dayGridPlugin, interactionPlugin]}
-          initialView="dayGridMonth"
-          events={events}
-        />
-      </div>
-
+	         <FullCalendar
+	           plugins={[dayGridPlugin, interactionPlugin]}
+	           initialView="dayGridMonth"
+	           events={events}
+	           dateClick={handleDateClick} // ✅ Open modal when clicking a date
+	         />
+	       </div>
       <button
         onClick={() => navigate(`/booking-request/${venue.id}`)}
         className="mt-4 bg-green-600 text-white px-4 py-2 rounded"
