@@ -85,22 +85,22 @@ export const getEvents = async (venueId) => {
 // Add a new event to the server
 
 export const addEvent = async (eventData) => {
-  console.log("API_URL in addEvent:", API_URL); // ✅ Debugging log
   console.log("Event Data Before Fix:", eventData); // ✅ Log eventData before sending
 
   // Fix: Use `start` as `date` if `date` is missing
   const fixedEventData = {
     title: eventData.title || "Untitled Event",
     date: eventData.date || eventData.start,  // ✅ Use `start` as fallback for `date`
-    time: eventData.time || "00:00:00",  // Default time to midnight if not provided
+    time: eventData.time || "00:00:00",  // ✅ Set event time
+    duration: eventData.duration || 60,  // ✅ Default duration in minutes
     venue: eventData.venueId,  // ✅ Ensure 'venue' field is included
     description: eventData.description || "",  // Optional field
   };
 
-  // Validate that date exists
-  if (!fixedEventData.date) {
-    console.error("❌ Still Missing 'date' field after fix:", fixedEventData);
-    return Promise.reject({ error: "Date is required." });
+  // Validate required fields
+  if (!fixedEventData.date || !fixedEventData.time) {
+    console.error("❌ Missing required 'date' or 'time' field:", fixedEventData);
+    return Promise.reject({ error: "Date and time are required." });
   }
 
   console.log("Event Data After Fix:", fixedEventData); // ✅ Debugging log after fix

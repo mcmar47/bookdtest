@@ -4,7 +4,7 @@ import { getVenueDetail, getEvents, addEvent } from '../services/api';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
-
+import { AddEventForm } from './AddEvent';  // ✅ Import the form
 
 function VenueDetail() {
   const { id } = useParams();
@@ -17,7 +17,7 @@ function VenueDetail() {
     getVenueDetail(id)
       .then(response => setVenue(response.data))
       .catch(error => console.log(error));
-    
+
     getEvents(id)  // ✅ Fetch events when page loads
       .then(response => {
         console.log("Fetched events:", response);  // ✅ Debug log
@@ -26,14 +26,11 @@ function VenueDetail() {
       .catch(error => console.log("Error fetching events:", error));
   }, [id]);
 
-  const handleDateClick = (arg) => {
-    const title = prompt('Enter event title:');
-    if (title) {
-      const newEvent = { title, start: arg.dateStr, venueId: id };
-     addEvent(newEvent)
-      .then(() => setEvents((prevEvents) => [...(prevEvents || []), newEvent]))  // ✅ Ensure array
+  // ✅ Function to handle event submission from the form
+  const handleAddEvent = (newEvent) => {
+    addEvent({ ...newEvent, venueId: id }) // ✅ Ensure venueId is added
+      .then(() => setEvents((prevEvents) => [...prevEvents, newEvent]))
       .catch((error) => console.error("Error adding event:", error));
-  }
   };
 
   if (!venue) return <p>Loading...</p>;
@@ -44,6 +41,7 @@ function VenueDetail() {
       <p>{venue.address}</p>
       <p>Capacity: {venue.capacity}</p>
       <p>Price: ${venue.price_per_event}</p>
+      
       <div className="mt-4">
         <iframe
           width="100%"
@@ -54,15 +52,19 @@ function VenueDetail() {
           allowFullScreen
         ></iframe>
       </div>
+
       <div className="mt-4">
         <h3 className="text-lg font-semibold">Event Calendar</h3>
+        {/* ✅ AddEventForm placed here */}
+        <AddEventForm onSubmit={handleAddEvent} /> 
+
         <FullCalendar
           plugins={[dayGridPlugin, interactionPlugin]}
           initialView="dayGridMonth"
           events={events}
-          dateClick={handleDateClick}
         />
       </div>
+
       <button
         onClick={() => navigate(`/booking-request/${venue.id}`)}
         className="mt-4 bg-green-600 text-white px-4 py-2 rounded"
