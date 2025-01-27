@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal'; // ✅ Import modal library
 
 Modal.setAppElement('#root'); // Ensure accessibility
@@ -8,6 +8,18 @@ export const AddEventForm = ({ isOpen, onRequestClose, onSubmit, selectedDate })
   const [time, setTime] = useState("12:00"); // ✅ Default time
   const [duration, setDuration] = useState(60); // ✅ Default duration
   const [description, setDescription] = useState("");
+
+  // ✅ Prevent background interaction
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.pointerEvents = "none";
+    } else {
+      document.body.style.pointerEvents = "auto";
+    }
+    return () => {
+      document.body.style.pointerEvents = "auto";
+    };
+  }, [isOpen]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
