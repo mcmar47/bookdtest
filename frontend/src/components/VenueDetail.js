@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { getVenueDetail } from '../services/api';
+import { getVenueDetail, getEvents, addEvent } from '../services/api';  
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
@@ -18,9 +18,12 @@ function VenueDetail() {
       .then(response => setVenue(response.data))
       .catch(error => console.log(error));
     
-    getEvents(id)
-      .then(response => setEvents(response.data))
-      .catch(error => console.log(error));
+    getEvents(id)  // ✅ Fetch events when page loads
+      .then(response => {
+        console.log("Fetched events:", response);  // ✅ Debug log
+        setEvents(response);
+      })
+      .catch(error => console.log("Error fetching events:", error));
   }, [id]);
 
   const handleDateClick = (arg) => {
