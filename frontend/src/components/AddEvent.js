@@ -12,12 +12,12 @@ export const AddEventForm = ({ isOpen, onRequestClose, onSubmit, selectedDate })
   // ✅ Prevent background interaction
   useEffect(() => {
     if (isOpen) {
-      document.body.style.pointerEvents = "none";
+      document.body.style.overflow = "hidden"; // Prevent scrolling
     } else {
-      document.body.style.pointerEvents = "auto";
+      document.body.style.overflow = "auto";
     }
     return () => {
-      document.body.style.pointerEvents = "auto";
+      document.body.style.overflow = "auto";
     };
   }, [isOpen]);
 
@@ -45,10 +45,10 @@ export const AddEventForm = ({ isOpen, onRequestClose, onSubmit, selectedDate })
       isOpen={isOpen} 
       onRequestClose={onRequestClose} 
       className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50" 
-      overlayClassName="fixed inset-0 bg-black bg-opacity-50" 
+      overlayClassName="fixed inset-0 bg-black bg-opacity-50 z-50" 
       shouldCloseOnOverlayClick={false} 
     >
-      <div className="p-4 bg-white rounded-xl shadow-md w-96 z-50">
+      <div className="p-4 bg-white rounded-xl shadow-md w-96 z-[100] relative">
         <h2 className="text-lg font-bold">Add Event on {selectedDate}</h2>
         <form onSubmit={handleSubmit}>
           <label>
