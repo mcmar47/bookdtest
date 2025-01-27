@@ -85,6 +85,13 @@ export const getEvents = async (venueId) => {
 // Add a new event to the server
 export const addEvent = async (eventData) => {
     console.log("API_URL in addEvent:", API_URL); // ✅ Debugging log
+    console.log("Event Data:", eventData); // ✅ Log eventData before sending
+
+     // Validate that date exists
+     if (!eventData.date) {
+       console.error("❌ Missing required 'date' field:", eventData);
+       return Promise.reject({ error: "Date is required." });
+     }
 	
     return fetch(`${API_URL}/api/events/`, {  // ✅ Ensure trailing slash
     method: "POST",
