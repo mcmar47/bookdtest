@@ -71,15 +71,16 @@ export const getUserProfile = async (token) => {
   }
 };
 
-export const getEvents = async () => {
-  try {
-    const response = await axios.get(`${API_URL}/events`);
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching events:', error);
-    throw error;
-  }
+export const getEvents = async (venueId) => {
+  return fetch(`${API_URL}/events?venueId=${venueId}`)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+    });
 };
+
 
 // Add a new event to the server
 export const addEvent = async (eventData) => {
