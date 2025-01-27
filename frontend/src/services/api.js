@@ -56,3 +56,17 @@ export const updateVenue = async (id, venueData) => {
   // PUT /venues/:id/ to update an existing venue
   return axios.put(`${API_URL}/venues/${id}/`, venueData);
 };
+
+export const getUserProfile = async (token) => {
+  try {
+    const response = await axios.get(`${API_URL}/auth/user/`, {
+      headers: {
+        Authorization: `Token ${token}`,  // ✅ Fix: Ensure token is included
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("❌ Profile Fetch Error:", error.response ? error.response.data : error.message);
+    throw error;
+  }
+};
