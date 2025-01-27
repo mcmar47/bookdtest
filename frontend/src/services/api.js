@@ -23,7 +23,7 @@ export const getVenues = async () => {
 };
 
 export const getVenueDetail = async (id) => {
-  return axios.get(`${API_URL}/venues/${id}/`);
+  return axios.get(`${API_URL}/api/venues/${id}/`);
 };
 
 export const requestBooking = async (venueId, data) => {
