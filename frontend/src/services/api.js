@@ -19,7 +19,7 @@ export const loginUser = async (credentials) => {
 
 
 export const getVenues = async () => {
-  return axios.get(`${API_URL}/venues/`);
+  return axios.get(`${API_URL}/api/venues/`);
 };
 
 export const getVenueDetail = async (id) => {
@@ -44,7 +44,7 @@ export const sendMessageApi = async (msg) => {
 
 export const addVenue = async (venueData) => {
   try {
-    const response = await axios.post(`${API_URL}/venues/`, venueData);
+    const response = await axios.post(`${API_URL}/api/venues/`, venueData);
     return response.data;
   } catch (error) {
     console.error("API Error:", error.response?.data || error.message);
