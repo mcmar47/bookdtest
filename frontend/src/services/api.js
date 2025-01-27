@@ -83,7 +83,6 @@ export const getEvents = async (venueId) => {
 
 
 // Add a new event to the server
-import { API_URL } from '../api';  // ✅ Use global API_URL
 
 export const addEvent = async (eventData) => {
   console.log("API_URL in addEvent:", API_URL); // ✅ Debugging log
