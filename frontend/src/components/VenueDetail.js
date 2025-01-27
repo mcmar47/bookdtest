@@ -28,8 +28,9 @@ function VenueDetail() {
 
   // ✅ Function to handle event submission from the form
   const handleAddEvent = (newEvent) => {
-    addEvent({ ...newEvent, venueId: id }) // ✅ Ensure venueId is added
-      .then(() => setEvents((prevEvents) => [...prevEvents, newEvent]))
+    const eventWithVenue = { ...newEvent, venueId: id }; // ✅ Attach venueId
+    addEvent(eventWithVenue)
+      .then(() => setEvents((prevEvents) => [...prevEvents, eventWithVenue]))
       .catch((error) => console.error("Error adding event:", error));
   };
 
