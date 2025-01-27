@@ -1,4 +1,3 @@
-import { API_URL } from '../api';  // ✅ Use global API_URL
 import React, { useState } from 'react';
 import Modal from 'react-modal'; // ✅ Import modal library
 
