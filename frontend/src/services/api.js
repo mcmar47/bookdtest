@@ -15,9 +15,6 @@ export const loginUser = async (credentials) => {
   return axios.post(`${API_URL}/auth/login/`, credentials);
 };
 
-export const getVenues = async () => {
-  return axios.get(`${API_URL}/api/venues/`);
-};
 
 export const getVenues = async () => {
   return axios.get(`${API_URL}/venues/`);
