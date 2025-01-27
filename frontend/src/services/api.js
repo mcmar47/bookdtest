@@ -84,11 +84,22 @@ export const getEvents = async (venueId) => {
 
 // Add a new event to the server
 export const addEvent = async (eventData) => {
-  try {
-    const response = await axios.post(`${API_URL}/api/events/`, eventData);
-    return response.data;
-  } catch (error) {
-    console.error('Error adding event:', error);
-    throw error;
-  }
+  return fetch("https://${API_URL}/api/events/", {  // ✅ Ensure trailing slash
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      title: eventData.title,
+      date: eventData.date,  // ✅ Ensure 'date' is included
+      time: eventData.time || null,  // Optional
+      venue: eventData.venueId,  // ✅ Ensure 'venue' field is included
+      description: eventData.description || "",  // Optional field
+    }),
+  }).then(response => {
+    if (!response.ok) {
+      return response.json().then(err => { throw err; });
+    }
+    return response.json();
+  }).catch(error => console.error("Error adding event:", error));
 };
